@@ -1,16 +1,25 @@
 (function () {
     'use strict';
 
-    function startPlugin() {
-        console.log('Привет от плагина!');
+    function init() {
+        // Регистрация в меню Lampa
+        Lampa.Controller.add('content', {
+            toggle: function () {},
+            left: function () {},
+            right: function () {},
+            up: function () {},
+            down: function () {},
+            back: function () {}
+        });
+        console.log('Мой плагин инициализирован');
     }
 
     if (window.appready) {
-        startPlugin();
+        init();
     } else {
         Lampa.Listener.follow('app', function (e) {
             if (e.type == 'ready') {
-                startPlugin();
+                init();
             }
         });
     }
