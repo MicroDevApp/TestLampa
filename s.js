@@ -2,46 +2,31 @@
     'use strict';
 
     function init() {
-        // 1. Добавляем кнопку в раздел настроек
+        // Убедимся, что мы добавляем объект с обязательными полями
         Lampa.Settings.push({
-            name: 'test_lampa_page',
-            label: 'Моя страница',
+            name: 'my_test_plugin', // Уникальный идентификатор
+            label: 'Моя страница',   // Заголовок, который видит пользователь
             type: 'button',
             onClick: function() {
-                // 2. Создаем и запускаем новую активность (страницу)
                 Lampa.Activity.push({
                     url: '',
-                    title: 'Приветствие',
+                    title: 'Приветствие', // Заголовок страницы
                     component: 'test_page',
                     page: 1
                 });
             }
         });
 
-        // 3. Регистрируем компонент для отображения нашей страницы
         Lampa.Component.add('test_page', function() {
-            var _this = this;
-
             this.create = function() {
-                // Создаем простой HTML-блок с текстом
                 var div = document.createElement('div');
                 div.style.padding = '50px';
                 div.style.textAlign = 'center';
-                div.style.fontSize = '30px';
-                div.innerHTML = 'Привет!';
+                div.innerHTML = '<h1>Привет!</h1>';
                 return div;
             };
-
-            this.render = function() {
-                return this.create();
-            };
-
-            this.destroy = function() {
-                // Очистка при закрытии
-            };
+            this.render = function() { return this.create(); };
         });
-
-        console.log('Плагин с кнопкой и страницей загружен!');
     }
 
     if (window.lampa) {
