@@ -1,26 +1,22 @@
-// @name TestLampa
-// @version 1.0.0
-// @description Тестовый плагин
-
 (function() {
     'use strict';
 
     function init() {
-        console.log('Мой плагин инициализирован');
-
-        // Пример: добавить пункт в меню
-        Lampa.Listener.follow('app', function(e) {
-            if (e.type === 'ready') {
-                console.log('Lampa готова!');
+        // Добавляем пункт в настройки
+        Lampa.Settings.push({
+            name: 'Мой плагин',
+            label: 'Настройки моего плагина',
+            type: 'button',
+            onClick: function() {
+                alert('Плагин работает! Ура!');
             }
         });
+        console.log('Плагин загружен и добавлен в настройки!');
     }
 
-    // Правильная проверка
-    if (window.Lampa && Lampa.Listener) {
+    if (window.lampa) {
         init();
     } else {
-        // Правильное событие
-        document.addEventListener('ready', init);
+        window.addEventListener('lampa:ready', init);
     }
 })();
