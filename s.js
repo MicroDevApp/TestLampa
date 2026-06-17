@@ -1,3 +1,7 @@
+// @name TestLampa
+// @version 1.0.0
+// @description Тестовый плагин
+
 (function() {
     'use strict';
 
