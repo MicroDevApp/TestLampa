@@ -1,9 +1,15 @@
 (function() {
     'use strict';
 
-    Lampa.Listener.follow('app', function(event) {
-        if (event.type === 'ready') {
-            Lampa.Noty.show('Мой плагин загружен');
-        }
-    });
+    function init() {
+        // Ваш код плагина
+        console.log('Плагин загружен!');
+    }
+
+    // Регистрация в Lampa
+    if (window.lampa) {
+        init();
+    } else {
+        window.addEventListener('lampa:ready', init);
+    }
 })();
