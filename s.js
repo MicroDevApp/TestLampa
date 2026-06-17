@@ -2,21 +2,21 @@
     'use strict';
 
     function init() {
-        // Регистрация в меню Lampa
-        Lampa.Controller.add('content', {
-            toggle: function() {},
-            left: function() {},
-            right: function() {},
-            up: function() {},
-            down: function() {},
-            back: function() {}
-        });
         console.log('Мой плагин инициализирован');
+
+        // Пример: добавить пункт в меню
+        Lampa.Listener.follow('app', function(e) {
+            if (e.type === 'ready') {
+                console.log('Lampa готова!');
+            }
+        });
     }
 
-    if (window.lampa) {
+    // Правильная проверка
+    if (window.Lampa && Lampa.Listener) {
         init();
     } else {
-        window.addEventListener('lampa:ready', init);
+        // Правильное событие
+        document.addEventListener('ready', init);
     }
 })();
