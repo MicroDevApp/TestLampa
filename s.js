@@ -1,26 +1,22 @@
 (function () {
-    'use strict';
+    // Ждем полной загрузки приложения
+    Lampa.listener.follow('app', function (e) {
+        if (e.type == 'ready') {
+            console.log('Плагин загружен!');
+            
+            // Добавим кнопку в главное меню
+            var button = $('<div class="menu__item selector focus">Мой плагин</div>');
+            
+            button.on('hover', function() {
+                // Действие при наведении
+            });
 
-    function init() {
-        // Регистрация в меню Lampa
-        Lampa.Controller.add('content', {
-            toggle: function () {},
-            left: function () {},
-            right: function () {},
-            up: function () {},
-            down: function () {},
-            back: function () {}
-        });
-        console.log('Мой плагин инициализирован');
-    }
+            button.on('click', function() {
+                // Действие при клике
+                Lampa.Noty.show('Привет из моего плагина!');
+            });
 
-    if (window.appready) {
-        init();
-    } else {
-        Lampa.Listener.follow('app', function (e) {
-            if (e.type == 'ready') {
-                init();
-            }
-        });
-    }
+            $('.menu__list').append(button);
+        }
+    });
 })();
